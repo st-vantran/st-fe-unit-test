@@ -1,7 +1,15 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
 import * as TYPES from '../../shared/types';
+import { Product } from '../../shared/types/product';
 
-const initialStateHome = {
+interface initialPost {
+  products: Product[];
+  product?: Product | {};
+  isLoading: boolean;
+  error: any;
+}
+
+const initialStateHome: initialPost = {
   products: [],
   product: {},
   isLoading: false,
@@ -14,7 +22,10 @@ const initialStateCategoriesHome = {
   error: '',
 };
 
-export const homeReducer = (state = initialStateHome, action: any) => {
+export const homeReducer = (
+  state = initialStateHome,
+  action: { type: string; payload: Product | Product[] }
+) => {
   switch (action.type) {
     case TYPES.GET_PRODUCTS:
       return {

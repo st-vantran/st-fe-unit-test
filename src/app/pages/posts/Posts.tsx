@@ -2,12 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getPosts } from './posts.actions';
+import { Product } from '../../shared/types/product';
 
 const Posts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isLoading, products } = useSelector((state: any) => state.posts);
+  const { isLoading, products } = useSelector(
+    (state: {
+      posts: { products: Product[]; product: Product; isLoading: boolean };
+    }) => state.posts
+  );
 
   useEffect(() => {
     dispatch(getPosts());
@@ -18,7 +23,7 @@ const Posts = () => {
   return (
     <>
       <div>
-        {products.map((item: any) => {
+        {products.map((item: Product) => {
           return (
             <Link to={`/posts/${item.id}`}>
               <p key={item.id}>{item.name}</p>
