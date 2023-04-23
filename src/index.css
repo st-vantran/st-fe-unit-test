@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root ul li{
+  display: flex;
+  align-items: center;
+}
+
+#root ul li button{
+  background: transparent;
+  margin-left: 10px;
+  border:1px solid rgba(128, 128, 128, 0.15);
+  height: 25px;
+  border-radius: 3px;
+}
+
+#root ul li button:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#root ul li a {
+  text-decoration: none;
+}
+
+#root ul li a p {
+  min-width: 200px;
+}

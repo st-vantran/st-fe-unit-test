@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { getPost, getPosts } from './posts.actions';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Product } from '../../shared/types/product';
+import { getPost } from './posts.actions';
 
 const Post = () => {
   const dispatch = useDispatch();

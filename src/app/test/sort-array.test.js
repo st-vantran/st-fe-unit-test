@@ -1,5 +1,3 @@
-// import { describe, expect, test, beforeAll } from 'jest';
-
 describe('isArraySorted', () => {
   const isArraySorted = (arr) => {
     for (let i = 0; i < arr.length; i++) {
@@ -18,7 +16,7 @@ describe('isArraySorted', () => {
 
   beforeAll(async () => {});
 
-  describe('case valid: ', () => {
+  describe('Case valid:', () => {
     test('Case default: true', async () => {
       const data = [1, 2, 3, 4, 5];
       expect(isArraySorted(data)).toBe(true);
@@ -30,7 +28,7 @@ describe('isArraySorted', () => {
     });
   });
 
-  describe('case invalid: ', () => {
+  describe('Case invalid:', () => {
     test('Case invalid data: falsy', async () => {
       const data = [null, 2, 3];
       expect(isArraySorted(data)).toBe(false);
@@ -39,6 +37,33 @@ describe('isArraySorted', () => {
     test('Case invalid data: NaN', async () => {
       const data = ['b', 2, 3];
       expect(isArraySorted(data)).toBe(false);
+    });
+  });
+
+  describe('Other cases', () => {
+    it('returns true if the array is sorted in ascending order', () => {
+      const arr = [1, 2, 3, 4, 5];
+      expect(isArraySorted(arr)).toBe(true);
+    });
+
+    it('returns true if the array is sorted in descending order', () => {
+      const arr = [5, 4, 3, 2, 1];
+      expect(isArraySorted(arr)).toBe(false);
+    });
+
+    it('returns false if the array is not sorted', () => {
+      const arr = [3, 2, 1, 4, 5];
+      expect(isArraySorted(arr)).toBe(false);
+    });
+
+    it('returns true if the array has only one element', () => {
+      const arr = [1];
+      expect(isArraySorted(arr)).toBe(true);
+    });
+
+    it('returns true if the array is empty', () => {
+      const arr = [];
+      expect(isArraySorted(arr)).toBe(true);
     });
   });
 });
