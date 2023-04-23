@@ -10,6 +10,7 @@ import Posts from './pages/posts/Posts';
 
 import appReducer from './app.reducer';
 import appMiddleware from './app.middlewares';
+import Post from './pages/posts/Post';
 
 function App() {
   const middleware = createSagaMiddleware();
@@ -21,8 +22,9 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Posts />} />
           <Route path="/posts" element={<Posts />} />
+          <Route path="/posts/:id" element={<Post />} />
         </Routes>
       </BrowserRouter>
     </Provider>

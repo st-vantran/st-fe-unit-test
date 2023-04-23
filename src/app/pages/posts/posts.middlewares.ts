@@ -5,18 +5,31 @@ import {
   getPostsError,
   getCategoriesSuccess,
   getCategoriesError,
+  getPostSuccess,
+  getPostError,
 } from './posts.actions';
 
 import * as TYPES from '../../shared/types';
 
-const ENDPOINT = 'https://6088e20da6f4a300174271e7.mockapi.io';
+export const ENDPOINT = 'https://jsonplaceholder.typicode.com';
 
 export function* getPosts() {
   try {
-    const res: AxiosResponse<any> = yield axios.get(`${ENDPOINT}/products`);
+    const res: AxiosResponse<any> = yield axios.get(`${ENDPOINT}/users`);
     yield put(getPostsSuccess(res.data));
   } catch (error) {
     yield put(getPostsError(error));
+  }
+}
+
+export function* getPost(payload: any) {
+  try {
+    const res: AxiosResponse<any> = yield axios.get(
+      `${ENDPOINT}/users/${payload.id}`
+    );
+    yield put(getPostSuccess(res.data));
+  } catch (error) {
+    yield put(getPostError(error));
   }
 }
 
@@ -31,6 +44,7 @@ export function* getCategories() {
 
 export function* watchPosts() {
   yield all([
+    takeLatest(TYPES.GET_PRODUCT, getPost),
     takeLatest(TYPES.GET_PRODUCTS, getPosts),
     takeLatest(TYPES.GET_CATEGORIES, getCategories),
   ]);

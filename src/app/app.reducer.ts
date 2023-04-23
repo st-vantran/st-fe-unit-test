@@ -6,6 +6,7 @@ import {
 
 const reducers = {
   posts: homeReducer,
+  post: homeReducer,
   categories: homeCategoriesReducer,
 };
 

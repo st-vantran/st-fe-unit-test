@@ -14,6 +14,21 @@ export const getPostsError = (error: any) => ({
   payload: error,
 });
 
+export const getPost = (id: string) => ({
+  type: TYPES.GET_PRODUCT,
+  id,
+});
+
+export const getPostSuccess = (posts: any) => ({
+  type: TYPES.GET_PRODUCT_SUCCESS,
+  payload: posts,
+});
+
+export const getPostError = (error: any) => ({
+  type: TYPES.GET_PRODUCT_ERROR,
+  payload: error,
+});
+
 export const getCategories = () => ({
   type: TYPES.GET_CATEGORIES,
 });

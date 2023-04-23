@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getPosts, getCategories } from './posts.actions';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { getPosts } from './posts.actions';
 
 const Posts = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,6 @@ const Posts = () => {
 
   useEffect(() => {
     dispatch(getPosts());
-    dispatch(getCategories());
   }, []);
 
   if (isLoading) return <h1>LOADING</h1>;
@@ -20,7 +19,11 @@ const Posts = () => {
     <>
       <div>
         {products.map((item: any) => {
-          return <p key={item.id}>{item.name}</p>;
+          return (
+            <Link to={`/posts/${item.id}`}>
+              <p key={item.id}>{item.name}</p>
+            </Link>
+          );
         })}
       </div>
       <button onClick={() => navigate('/')}>HOME</button>
