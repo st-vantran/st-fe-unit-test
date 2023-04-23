@@ -14,9 +14,14 @@ const Posts = () => {
 
   const [productsList, setProducts] = useState<Product[]>([]);
 
-  const { isLoading, products } = useSelector(
+  const { isLoading, products, error } = useSelector(
     (state: {
-      posts: { products: Product[]; product: Product; isLoading: boolean };
+      posts: {
+        products: Product[];
+        product: Product;
+        isLoading: boolean;
+        error: any;
+      };
     }) => state.posts
   );
 
@@ -33,18 +38,21 @@ const Posts = () => {
     setProducts(products);
   }, [products]);
 
-  if (isLoading) return <h1>LOADING</h1>;
+  if (isLoading) return <h1 data-testid="loading">LOADING</h1>;
+  if (error) return <h1>ERROR</h1>;
 
   return (
     <>
-      <ul>
+      <ul data-testid="user-list">
         {productsList.map((item: Product, index: number) => {
           return (
             <li key={index}>
               <Link to={`/posts/${item.id}`}>
                 <p key={item.id}>{item.name}</p>
               </Link>
-              <button onClick={() => deleteProductFn(item.id)}>X</button>
+              <button onClick={() => deleteProductFn(item.id)}>
+                Delete user {item.id}
+              </button>
             </li>
           );
         })}

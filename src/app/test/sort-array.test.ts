@@ -1,5 +1,5 @@
 describe('isArraySorted', () => {
-  const isArraySorted = (arr) => {
+  const isArraySorted = (arr: any) => {
     for (let i = 0; i < arr.length; i++) {
       if (!arr[i] || isNaN(arr[i])) {
         return false;
@@ -62,8 +62,10 @@ describe('isArraySorted', () => {
     });
 
     it('returns true if the array is empty', () => {
-      const arr = [];
+      const arr: any = [];
       expect(isArraySorted(arr)).toBe(true);
     });
   });
 });
+
+export {};

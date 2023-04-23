@@ -9,9 +9,14 @@ const Post = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const { isLoading, product } = useSelector(
+  const { isLoading, product, error } = useSelector(
     (state: {
-      posts: { products: Product[]; product: Product; isLoading: boolean };
+      posts: {
+        products: Product[];
+        product: Product;
+        isLoading: boolean;
+        error: any;
+      };
     }) => state.posts
   );
 
@@ -20,6 +25,7 @@ const Post = () => {
   }, []);
 
   if (isLoading) return <h1>LOADING</h1>;
+  if (error) return <h1>ERROR</h1>;
 
   return (
     <>

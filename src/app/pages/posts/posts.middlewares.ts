@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { put, takeLatest, all } from 'redux-saga/effects';
+import { put, takeLatest, all, call } from 'redux-saga/effects';
 import {
   getPostsSuccess,
   getPostsError,
@@ -13,7 +13,7 @@ import * as TYPES from '../../shared/types';
 
 export const ENDPOINT = 'https://jsonplaceholder.typicode.com';
 
-export function* getPosts() {
+export function* getPostsFn() {
   try {
     const res: AxiosResponse<any> = yield axios.get(`${ENDPOINT}/users`);
     yield put(getPostsSuccess(res.data));
@@ -45,7 +45,7 @@ export function* getCategories() {
 export function* watchPosts() {
   yield all([
     takeLatest(TYPES.GET_PRODUCT, getPost),
-    takeLatest(TYPES.GET_PRODUCTS, getPosts),
+    takeLatest(TYPES.GET_PRODUCTS, getPostsFn),
     takeLatest(TYPES.GET_CATEGORIES, getCategories),
   ]);
 }
